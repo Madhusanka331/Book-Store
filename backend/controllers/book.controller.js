@@ -2,13 +2,14 @@ const Book = require("../model/Book.model");
 
 const addBooks = async (req, res) => {
     try{
-        const {name, author, description, price, available} = req.body;
+        const {name, author, description, price, available, image} = req.body;
         const book = new Book({
             name,
             author,
             description,
             price,
             available,
+            image,
         })
         await book.save();
         return res.status(201).json({book});
@@ -44,13 +45,14 @@ const getBook = async (req, res) => {
 const updateBook = async (req, res) => {
     try{
         const bookId = req.params.bookId;
-        const {name, author, description, price, available} = req.body;
+        const {name, author, description, price, available, image} = req.body;
         const book = await Book.findByIdAndUpdate(bookId, {
             name,
             author,
             description,
             price,
             available,
+            image,
         })
         await book.save();
         return res.status(200).json({ book });
