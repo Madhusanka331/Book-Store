@@ -22,7 +22,7 @@ function App() {
           <Route path="/about" element={<About/>} exact/>
           <Route path="/book" element={<Book/>} exact/>
           <Route path="/books" element={<Books/>} exact/>
-          <Route path="/details" element={<BookDetail/>} exact/>
+          <Route path="/books/:id" element={<BookDetail/>} exact/>
           
         </Routes>
       </main>

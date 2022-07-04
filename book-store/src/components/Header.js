@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AppBar, Tab, Tabs, Toolbar, Typography } from "@mui/material";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [value, setValue] = useState();
