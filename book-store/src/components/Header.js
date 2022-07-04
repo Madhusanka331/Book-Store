@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AppBar, Tab, Tabs, Toolbar, Typography } from "@mui/material";
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { NavLink } from 'react-router-dom';
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [value, setValue] = useState();
@@ -9,11 +9,11 @@ const Header = () => {
     <div>
       <AppBar sx={{ backgroundColor: "#232F3D" }} position="sticky">
         <Toolbar>
-          <NavLink to="/" style={{color:'white'}}>
+          <NavLink to="/" style={{ color: "white" }}>
             <Typography>
               <MenuBookIcon />
             </Typography>
-            </NavLink>
+          </NavLink>
           <Tabs
             sx={{ ml: "auto" }}
             textColor="inherit"

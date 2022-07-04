@@ -1,45 +1,51 @@
-import React, { useState} from "react";
-import { FormLabel, TextField, Box, Button, FormControlLabel, Checkbox } from "@mui/material";
+import React, { useState } from "react";
+import {
+  FormLabel,
+  TextField,
+  Box,
+  Button,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
-  const history = useNavigate()
+  const history = useNavigate();
   const [inputs, setInputs] = useState({
-    name:'',
-    description:'',
-    price:'',
-    author:'',
-    image:''
-  })
+    name: "",
+    description: "",
+    price: "",
+    author: "",
+    image: "",
+  });
 
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value
-    }))
-  }
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-
-
-const sendRequest = async() => {
-  await axios.post("http://localhost:5000/books", {
-    name: String(inputs.name),
-    author: String(inputs.author),
-    description: String(inputs.description),
-    price: Number(inputs.price),
-    image: String(inputs.image),
-    available: Boolean(checked)
-  }).then(res => res.data);
-}
+  const sendRequest = async () => {
+    await axios
+      .post("http://localhost:5000/books", {
+        name: String(inputs.name),
+        author: String(inputs.author),
+        description: String(inputs.description),
+        price: Number(inputs.price),
+        image: String(inputs.image),
+        available: Boolean(checked),
+      })
+      .then((res) => res.data);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs, checked);
-    sendRequest().then(() => history('/books') );
-  }
+    sendRequest().then(() => history("/books"));
+  };
   return (
     <form onSubmit={handleSubmit}>
       <Box
@@ -54,12 +60,27 @@ const sendRequest = async() => {
         marginTop={10}
       >
         <FormLabel>Name</FormLabel>
-        <TextField value={inputs.name} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="name" />
+        <TextField
+          value={inputs.name}
+          onChange={handleChange}
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          name="name"
+        />
         <FormLabel>Author</FormLabel>
-        <TextField value={inputs.author} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="author" />
+        <TextField
+          value={inputs.author}
+          onChange={handleChange}
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          name="author"
+        />
         <FormLabel>Description</FormLabel>
         <TextField
-        value={inputs.description} onChange={handleChange}
+          value={inputs.description}
+          onChange={handleChange}
           margin="normal"
           fullWidth
           variant="outlined"
@@ -67,7 +88,8 @@ const sendRequest = async() => {
         />
         <FormLabel>Price</FormLabel>
         <TextField
-        value={inputs.price} onChange={handleChange}
+          value={inputs.price}
+          onChange={handleChange}
           type={"number"}
           margin="normal"
           fullWidth
@@ -75,8 +97,20 @@ const sendRequest = async() => {
           name="price"
         />
         <FormLabel>Image</FormLabel>
-        <TextField value={inputs.image} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="image" />
-        <FormControlLabel control={<Checkbox checked = {checked} onChange={() => setChecked(!checked)} />} label="Available" />
+        <TextField
+          value={inputs.image}
+          onChange={handleChange}
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          name="image"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
+          }
+          label="Available"
+        />
         <Button variant="contained" type="submit">
           Add Book
         </Button>

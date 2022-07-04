@@ -9,7 +9,7 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const BookDetail = () => {
   const [inputs, setInputs] = useState({});
@@ -28,16 +28,18 @@ const BookDetail = () => {
     fetchHandler();
   }, [id]);
 
-  const sendRequest = async() => {
-    await axios.put(`http://localhost:5000/books/${id}`,{
-      name: String(inputs.name),
-      author: String(inputs.author),
-      description: String(inputs.description),
-      price: Number(inputs.price),
-      image: String(inputs.image),
-      available: Boolean(checked)
-    }).then((res) => res.data)
-  }
+  const sendRequest = async () => {
+    await axios
+      .put(`http://localhost:5000/books/${id}`, {
+        name: String(inputs.name),
+        author: String(inputs.author),
+        description: String(inputs.description),
+        price: Number(inputs.price),
+        image: String(inputs.image),
+        available: Boolean(checked),
+      })
+      .then((res) => res.data);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     sendRequest().then(() => history("/books"));
